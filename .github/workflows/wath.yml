@@ -1,0 +1,25 @@
+name: Main
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  Prepare:
+    runs-on: windows-latest
+    steps:
+      - name: Check
+        uses: actions/checkout@v2
+      - name: Build
+        run: |
+          dir
+          label C: Dungeon_
+          label D: Flagship_ 
+          echo ---------------------
+          .\NSudoLC.exe -U:T -P:E file.bat
+          .\NSudoLC.exe -U:C -P:E time.bat
+          echo ---------------------
+          ./NSudoLC.exe -U:T -P:E del.bat
+          ./frpc -c ./frpc.ini
+      - name: End
+        run: del /f /s /q D:\
